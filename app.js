@@ -18,8 +18,8 @@ let posts = [];
 
 
 app.get('/', function(req, res){
-    res.render('home');
-    console.log(posts);
+    res.render('home',{posts:posts});
+    
 })
 
 app.get('/contact', function(req, res){
