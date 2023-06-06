@@ -36,11 +36,15 @@ app.get('/compose', function(req, res){
 app.post('/', function(req, res){
     const blog1={
         blog_title: req.body.blogtitle,
-        blog: req.body.blogcontent
+        blogcontent: req.body.blogcontent
     };
 
     posts.push(blog1);
     res.redirect("/");
+})
+
+app.get("/posts/:postname",function(req,res){
+    const req_title = req.params.postname;
 })
 
 app.listen( 3000,function(){
