@@ -45,6 +45,14 @@ app.post('/', function(req, res){
 
 app.get("/posts/:postname",function(req,res){
     const req_title = req.params.postname;
+    
+    posts.forEach(function(post){
+        if (post.title == req_title)
+            console.log('match found');
+        else
+        console.log('match does not found');    
+    })
+    
 })
 
 app.listen( 3000,function(){
