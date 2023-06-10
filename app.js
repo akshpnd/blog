@@ -5,6 +5,8 @@ const bodyparser = require("body-parser");
 const https = require("https");
 const ejs = require('ejs');
 const mongoose = require('mongoose');
+const _= require("lodash");
+
 
 app.set('view engine','ejs');
 app.use(express.static('public'));
@@ -44,17 +46,14 @@ app.post('/', function(req, res){
 })
 
 app.get("/posts/:postname",function(req,res){
-    const req_title = req.params.postname;
+    const req_title = _.lowerCase(req.params.postname);
     
     
     posts.forEach(function(post){
        
-           if (post.blog_title == req_title){
-            console.log('match found');
+           if (_.lowerCase(post.blog_title) == req_title){
+            res.render('post',{title:post.blog_title,content:post.blogcontent})
         }
-        else
-        {console.log('match does not found');
-    }   
     })
     
 })
