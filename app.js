@@ -30,7 +30,15 @@ const blogSchema = new mongoose.Schema({
     name: 'aksh'
   });
 
-  firstblog.save();
+  const secondblog = new Blog({
+    name: 'kumar'
+  });
+  const thirdblog = new Blog({
+    name: 'pandey'
+  });
+
+
+  Blog.insertMany([firstblog,secondblog,thirdblog]);
 
 const blog1 = 'Bankai refers to a Zanpakutō second release, and it can usually only be achieved by Captain-level Soul Reapers. Fans have seen more than a dozen of these Bankai, and they are all extremely powerful, but some are far stronger than others.';
 const q = 'will be posting everything i am going through';
