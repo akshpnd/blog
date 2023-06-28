@@ -15,6 +15,7 @@ async function main() {
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 const _= require("lodash");
+const { stringify } = require("querystring");
 
 
 app.set('view engine','ejs');
@@ -22,33 +23,19 @@ app.use(express.static('public'));
 app.use(bodyparser.urlencoded({extended:true}));
 
 const blogSchema = new mongoose.Schema({
-    name: String
+    title: String,
+    blog: String
   });
   const Blog = mongoose.model('Blog', blogSchema);
 
-  const firstblog = new Blog({
-    name: 'aksh'
-  });
 
-  const secondblog = new Blog({
-    name: 'kumar'
-  });
-  const thirdblog = new Blog({
-    name: 'pandey'
-  });
-
-
-  Blog.insertMany([firstblog,secondblog,thirdblog]);
 
 const blog1 = 'Bankai refers to a Zanpakutō second release, and it can usually only be achieved by Captain-level Soul Reapers. Fans have seen more than a dozen of these Bankai, and they are all extremely powerful, but some are far stronger than others.';
 const q = 'will be posting everything i am going through';
 
-let posts = []; 
-
-
 
 app.get('/', function(req, res){
-    res.render('home',{posts:posts});
+    res.render('home');
     
 })
 
@@ -64,12 +51,14 @@ app.get('/compose', function(req, res){
     res.render('compose');
 })
 app.post('/', function(req, res){
-    const blog1={
-        blog_title: req.body.blogtitle,
-        blogcontent: req.body.blogcontent
-    };
+    const firstblog= new Blog ({
+        title: req.body.blogtitle,
+        blog: req.body.blogcontent
+    });
 
-    posts.push(blog1);
+    firstblog.save();
+
+    
     res.redirect("/");
 })
 

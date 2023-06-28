@@ -1,10 +1,17 @@
 <%-include('header');-%>
-<h1>home</h1>
+<body >
+    
 
+<h1>home</h1>
+<button type="submit" class="btn btn-primary"><a style="color: black" href="/compose">compose</a></button>
+
+<%/*%>
 <%posts.forEach(function(post){%>
     <h1><%=post.blog_title%></h1>
     <p><%=post.blogcontent.substring(0,100)+"...."%></p> 
     <a href="/posts/<%=post.blog_title%> ">Read More</a>
     <% } ) %>
+    <%*/%>
+</body>
 
 <%-include('footer');-%>
